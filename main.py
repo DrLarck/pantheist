@@ -6,8 +6,11 @@ Last update: 24/04/19
 # Dependancies 
 import discord, asyncio, time, logging
 from discord.ext import commands
+
 from configuration.connection_config import BOT_TOKEN
 from configuration.global_config import PREFIXE, COGS
+from cogs.background.presence import Discord_PresenceUpdater
+from cogs.utils.tasks.background_runner import Background_Task_Runner
 
 # Client configuration
 logging.basicConfig(level=logging.INFO)
@@ -27,4 +30,5 @@ if __name__ == '__main__':
             pass
 
 # Running tasks
+Background_Task_Runner(client)
 client.run(BOT_TOKEN)
