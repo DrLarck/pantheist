@@ -5,5 +5,5 @@ Last update: 24/04/19
 '''
 # Basic configuration
 PREFIXE = ['**']
-COGS = ['cogs.event.on_ready_event']
-V_MAJ, V_MED, V_MIN, V_PHASE = 0,0,5,'Prototype' 
+COGS = ['cogs.event.on_ready_event', 'cogs.event.on_message_event', 'cogs.commands.warn']
+V_MAJ, V_MED, V_MIN, V_PHASE = 0,0,36,'Prototype' 

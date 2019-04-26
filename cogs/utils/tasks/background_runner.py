@@ -5,7 +5,7 @@ Last update: 24/04/19
 '''
 # Dependancies
 from cogs.background.presence import Discord_PresenceUpdater
-from cogs.utils.database.database_runner import Connect_To_Database
+from cogs.utils.database.database_runner import Connect_To_Database, Init_Tables
 
 def Background_Task_Runner(client):
     '''
@@ -17,3 +17,4 @@ def Background_Task_Runner(client):
     # as following 
     client.loop.create_task(Discord_PresenceUpdater(client))
     client.loop.run_until_complete(Connect_To_Database(client))
+    client.loop.run_until_complete(Init_Tables(client))
