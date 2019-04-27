@@ -23,46 +23,28 @@ If you just want to edit the behaviour of your bot, you can edit one of the file
 I recommend you to use **Notepad++**.
 
 Now if you want to add a brand new command that you've imagined by your own, just go to the `cogs` folder, then `commands`. Afterward, create a new **python file** (with the `.py` extension) just like : `my_amazing_command.py` and init your file as following :
-
-> '''
-
-> A clear description of the file you've created
-
-> 
-
-> Last update: ENTER_THE_DATE_HERE
-
-> '''
-
-> # Dependancies
-
-> import discord, asyncio  # Just import all the modules you need for your command
-
-> from discord.ext import commands
-
-> from discord.ext.commands import Cog
-
-> 
-
-> class YOUR_CLASS(Cog):
-
->      def __init__(self, client):
-
->          self.client = client
-
-> 
-
->      '''
-
->      ENTER YOUR CODE HERE
-
->      '''
-
-> 
-
-> def setup(client):
-
->      client.add_cog(YOUR_CLASS(client))
+ ```python
+ '''
+ A clear description of the file you've created
+ 
+ Last update: ENTER_THE_DATE_HERE
+ '''
+ # Dependancies
+ import discord, asyncio  # Just import all the modules you need for your command
+ from discord.ext import commands
+ from discord.ext.commands import Cog
+ 
+ class YOUR_CLASS(Cog):
+      def __init__(self, client):
+          self.client = client
+ 
+      '''
+      ENTER YOUR CODE HERE
+      '''
+ 
+ def setup(client):
+      client.add_cog(YOUR_CLASS(client))
+```
 
 ### Requirements
 The requirements are the followings : 
