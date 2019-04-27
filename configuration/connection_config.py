@@ -1,7 +1,7 @@
 '''
 Manages the settings for the connections, such as the database connection and to the Discord Websocket.
 
-Last update: 24/04/19
+Last update: 27/04/19
 '''
 # Dependancies 
 import os
@@ -15,6 +15,7 @@ BOT_TOKEN = os.environ['PANTHEIST_TOKEN']  # Insert your token here, as the BOT_
 # to use sqlite3.
 # The following variables are waiting for str type values
 # raplace all of the values by your own values
+
 DB_USER = os.environ['PANTHEIST_DB_USER']  # Your PostgreSQL user name
 DB_HOST = os.environ['PANTHEIST_DB_HOST']  # The host adress
 DB_PASSWORD = os.environ['PANTHEIST_DB_PASSWORD']  # The password to connect to your database

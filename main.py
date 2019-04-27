@@ -8,14 +8,13 @@ import discord, asyncio, time, logging
 from discord.ext import commands
 
 from configuration.connection_config import BOT_TOKEN
-from configuration.global_config import PREFIXE, COGS
-from cogs.background.presence import Discord_PresenceUpdater
+from configuration.global_config import PREFIX, COGS
 from cogs.utils.tasks.background_runner import Background_Task_Runner
 
 # Client configuration
 logging.basicConfig(level=logging.INFO)
 client = discord.Client()
-client = commands.Bot(command_prefix=PREFIXE)
+client = commands.Bot(command_prefix=PREFIX)
 client.remove_command('help')  # We delete the basic help command to create our own
 
 # Loading cogs
