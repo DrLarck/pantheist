@@ -45,7 +45,11 @@ Now if you want to add a brand new command that you've imagined by your own, jus
  def setup(client):
       client.add_cog(YOUR_CLASS(client))
 ```
-
+After creating your custom command, add the new `cog` to the `COGS` list in the `global_settings.py` file you'll find it here : `configuration > global_config.py`
+Just like that : 
+```python
+COGS = ['cogs.my_amazing_command.py']  # Don't forget to add a comma or it will not work
+```
 ### Requirements
 The requirements are the followings : 
 * `python version 3.7` or higher.
