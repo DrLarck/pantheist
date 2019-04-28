@@ -8,7 +8,7 @@ import discord, asyncio, time
 from discord.ext import commands
 
 from configuration.background_config import PRESENCE_UPDATER_TIMER
-from configuration.global_config import V_MAJ,V_MED,V_MIN,V_PHASE
+from configuration.global_config import V_MAJ,V_MED,V_MIN,V_PHASE, PREFIX
 
 async def Discord_PresenceUpdater(client):
     '''
@@ -22,7 +22,7 @@ async def Discord_PresenceUpdater(client):
 
         server_count = len(client.guilds)
         version = 'v{}.{}.{} - {}'.format(V_MAJ,V_MED,V_MIN,V_PHASE)
-        presence = '{} servers | {}'.format(server_count, version)
+        presence = '{}help | {} servers | {}'.format(PREFIX[0], server_count, version)
         activity = discord.Game(name=presence)
 
         await client.change_presence(activity=activity)

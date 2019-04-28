@@ -1,0 +1,47 @@
+'''
+Manages the help command.
+
+Last update: 28/04/19
+'''
+# Dependancies
+import discord, asyncio, time
+from discord.ext import commands
+from discord.ext.commands import Cog
+
+from cogs.utils.translation.translation import Translator
+from cogs.utils.functions.readability.embed import Basic_Embed
+from configuration.global_config import PREFIX
+
+class Help(Cog):
+    def __init__(self, client):
+        self.client = client
+    
+    @commands.command()
+    async def help(self, ctx):
+        '''
+        Displays the help message
+        '''
+        # Init
+        _ = await Translator(self.client, ctx)
+        help_embed = Basic_Embed(self.client)
+        help_title = _('Help')
+        help_desc = _('Welcome in the help panel.\nA parameter between [square brackets] is **necessary**, otherwise the command will not work.\nA parameter between {braces} is **optional**.\nThe \'**@**\' symbol means that the command needs a **mention**.\nBy default, the temp-ban is set to 1 day.\nPrefix : `**`')
+
+        # Commands name
+        kick_n = _('kick [@user] {reason}')
+        warn_n = _('warn | w [@user]')
+
+        # Commands description
+        kick_desc = _('[Perm : kick members] - Allows you to kick a member from the server.\n')
+        warn_desc = _('[Perm : kick members, ban members] - Allows you to warn a user, after a certain amount of warns the warn system will invite you to kick/temp-ban the user.')
+
+        # Set the display
+        help_embed.add_field(name=help_title, value=help_desc, inline= False)
+
+        help_embed.add_field(name=kick_n, value=kick_desc, inline= False)
+        help_embed.add_field(name=warn_n, value=warn_desc, inline= False)
+
+        await ctx.send(embed=help_embed)
+
+def setup(client):
+    client.add_cog(Help(client))
