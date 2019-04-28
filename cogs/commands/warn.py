@@ -1,7 +1,7 @@
 '''
 Manages the warn command
 
-Last update: 27/04/19
+Last update: 28/04/19
 '''
 # Dependancies
 import discord, asyncio, time
@@ -22,7 +22,7 @@ class Warn(Cog):
         self.client = client
     
     @commands.command(aliases=['w'])
-    @commands.has_permissions(kick_members=True)
+    @commands.has_permissions(kick_members=True, ban_members=True)
     async def warn(self, ctx, user: discord.Member, *, reason= None):
         '''
         Allows a member that has the right permission to warn a member
@@ -32,8 +32,8 @@ class Warn(Cog):
         _ = await Translator(self.client, ctx)
         caller = ctx.message.author
         server = ctx.message.guild
-        user_warns = await User_warn_amount(self.client, user, server)
         await Insert_init_pilory(self.client, user, server)
+        user_warns = await User_warn_amount(self.client, user, server)
 
         # Now we've the amount of the user's warns we can update it
 

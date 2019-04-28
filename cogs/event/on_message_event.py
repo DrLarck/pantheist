@@ -21,12 +21,13 @@ class On_Message(Cog):
 
         Return: void
         '''
-        # Var
-        user = message.author
-        server = message.guild
-        date = time.strftime('%d/%m/%y', time.gmtime())
-        await Insert_user_info(self.client, user, date)
-        await Insert_init_pilory(self.client, user, server)
+        if(message.author != self.client.user):
+            # Var
+            user = message.author
+            server = message.guild
+            date = time.strftime('%d/%m/%y', time.gmtime())
+            await Insert_user_info(self.client, user, date)
+            await Insert_init_pilory(self.client, user, server)
 
 def setup(client):
     client.add_cog(On_Message(client))
