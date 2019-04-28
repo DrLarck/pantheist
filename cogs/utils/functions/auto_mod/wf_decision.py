@@ -74,7 +74,7 @@ async def Wait_for_kick(client, ctx, server, caller, target, reason=None):
             await ctx.send(_('<@{}> *[KICK]* Cancellation.').format(caller.id))
             return
 
-async def Wait_for_ban(client, ctx, server, caller, target, reason=None):
+async def Wait_for_ban(client, ctx, server, caller, target, reason=None, ban_until=None):
     '''
     If the caller says 'yes' or 'no' using the prefix, the target is banned from the server.
 
@@ -118,17 +118,21 @@ async def Wait_for_ban(client, ctx, server, caller, target, reason=None):
             try:
                 user_warns = await User_warn_amount(client, target, server)
                 time_now = time.time()
-                ban_until = time_now + BAN_LIMIT
+                if(ban_until == None):
+                    ban_time = time_now + BAN_LIMIT
+                
+                else:
+                    ban_time = time_now + ban_until
 
                 await ctx.send(_('<@{}> Banning **{}**.').format(caller.id, target.name))
                 if(reason == None):
                     await server.ban(target, reason='[BAN] Banned after {} warns by {}.'.format(user_warns, caller))
-                    await Update_ban_until(client, target, server, ban_until)
+                    await Update_ban_until(client, target, server, ban_time)
                     return
 
                 else:
                     await server.ban(target, reason=reason)
-                    await Update_ban_until(client, target, server, ban_until)
+                    await Update_ban_until(client, target, server, ban_time)
                     return
             
             except discord.errors.Forbidden:

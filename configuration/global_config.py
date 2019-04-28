@@ -8,9 +8,9 @@ Last update: 28/04/19
 PREFIX = ['**']
 
 COGS = ['cogs.event.on_ready_event', 'cogs.event.on_message_event', 'cogs.commands.warn',
-        'cogs.commands.kick', 'cogs.commands.help']
+        'cogs.commands.kick', 'cogs.commands.help', 'cogs.commands.ban']
 
-V_MAJ, V_MED, V_MIN, V_PHASE = 0,1,10,'Prototype' 
+V_MAJ, V_MED, V_MIN, V_PHASE = 0,1,14,'Prototype' 
 
 # Customization
 
