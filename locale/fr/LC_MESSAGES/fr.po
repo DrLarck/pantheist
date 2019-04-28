@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pantheist_translation\n"
-"POT-Creation-Date: 2019-04-27 13:21+0200\n"
-"PO-Revision-Date: 2019-04-27 13:21+0200\n"
+"POT-Creation-Date: 2019-04-28 20:02+0200\n"
+"PO-Revision-Date: 2019-04-28 20:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -10,11 +10,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
-"X-Poedit-Basepath: ..\n"
+"X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: cogs/commands/warn.py:45 cogs/commands/warn.py:49
+#: cogs/commands/ban.py:44
+msgid ""
+"<@{}> You're about to **perma-ban {}**, are you sure about that ?\n"
+"*(Type `{}yes` or `{}no` to proceed)*"
+msgstr ""
+"<@{}> Vous êtes sur le point de **perma-ban {}**, êtes-vous sûr de vouloir "
+"bannir cet utilisateur ?\n"
+"*(Tapez `{}yes` ou `{}no` à la suite pour continuer)*"
+
+#: cogs/commands/ban.py:53
+msgid ""
+"<@{}> You're about to **ban {}** for **{:,}** seconds. Are you sure about "
+"that ?\n"
+"*(Type `{}yes` or `{}no` to proceed)*"
+msgstr ""
+"<@{}> Vous êtes sur le point de **ban {}** pour une durée de **{:,}** "
+"secondes. Êtes-vous sûr de vouloir faire cela ?\n"
+"*(Tapez `{}yes` ou `{}no` à la suite pour continuer)*"
+
+#: cogs/commands/help.py:27
+msgid "Help"
+msgstr "Aide"
+
+#: cogs/commands/help.py:28
+#, python-brace-format
+msgid ""
+"Welcome in the help panel.\n"
+"A parameter between [square brackets] is **necessary**, otherwise the "
+"command will not work.\n"
+"A parameter between {braces} is **optional**.\n"
+"The '**@**' symbol means that the command needs a **mention**.\n"
+"By default, the temp-ban is set to 1 day.\n"
+"Prefix : `**`"
+msgstr ""
+"Bienvenue dans le panneau d'aide.\n"
+"Un paramètre entre [crochets] est **obligatoire**, sinon la commande ne "
+"fonctionnera pas.\n"
+"Un paramètre entre {accolades} est **facultatif**.\n"
+"Le symbole '@' signifie que vous devez **mentionner** pour que la commande "
+"fonctionne.\n"
+"Par défaut, la durée du temp-ban est définie à 1 jour.\n"
+"Préfixe : `**`"
+
+#: cogs/commands/help.py:31
+msgid "ban [@user] {time: seconds} {\"reason\"}"
+msgstr "ban [@utilisateur] {temps: en secondes} {\"raison\"}"
+
+#: cogs/commands/help.py:32
+#, python-brace-format
+msgid "kick [@user] {reason}"
+msgstr "kick [@utilisateur] {raison}"
+
+#: cogs/commands/help.py:33
+msgid "warn | w [@user]"
+msgstr "warn | w [@utilisateur]"
+
+#: cogs/commands/help.py:36
+msgid ""
+"[Perm : ban members] - Allows you to ban a member from the server.\n"
+"If it's a **temp-ban**, please pass the time as **seconds**.\n"
+"Also pass the **reason** between \"quotation marks\"."
+msgstr ""
+"[Perm : bannir des membres] - Vous permet de bannir un membre du serveur.\n"
+"Si c'est un **temp-ban**, merci de bien vouloir passer le temps en "
+"**secondes**.\n"
+"De plus, la **raison** doit être passée entre \"guillemets\"."
+
+#: cogs/commands/help.py:37
+msgid "[Perm : kick members] - Allows you to kick a member from the server.\n"
+msgstr ""
+"[Perm : expulser des membres] - Vous permet d'expulser un membre du "
+"serveur.\n"
+
+#: cogs/commands/help.py:38
+msgid ""
+"[Perm : kick members, ban members] - Allows you to warn a user, after a "
+"certain amount of warns the warn system will invite you to kick/temp-ban the "
+"user."
+msgstr ""
+"[Perm : expulser des membres, bannir des membres] - Vous permet de donner un "
+"avertissement à un utilisateur, après un certain nombre d'avertissements, le "
+"système vous demandera si vous souhaitez expulser/temp-ban l'utilisateur."
+
+#: cogs/commands/kick.py:30
+msgid ""
+"<@{}> You're about to **kick {}**, are you sure that you want to kick this "
+"user ?\n"
+"*(Type `{}yes` or `{}no` to proceed)*"
+msgstr ""
+"<@{}> Vous êtes sur le point d'**expulser {}**, êtes-vous sûr de vouloir "
+"expulser cet utilisateur ?\n"
+"*(Tapez `{}yes` ou `{}no` à la suite pour continuer)*"
+
+#: cogs/commands/warn.py:52 cogs/commands/warn.py:56
 msgid ""
 "<@{}> You've been warned by **{}** in `{}` for the following reason : *"
 "\"{}\"*\n"
@@ -24,7 +117,7 @@ msgstr ""
 "pour la raison suivante : *\"{}\"*\n"
 "Vous cumulez désormais **{:,}** avertissements dans ce serveur."
 
-#: cogs/commands/warn.py:53 cogs/commands/warn.py:57
+#: cogs/commands/warn.py:60 cogs/commands/warn.py:64
 msgid ""
 "<@{}> You've been warned by **{}** in `{}`.\n"
 "You have now **{:,}** warns in this server."
@@ -32,3 +125,55 @@ msgstr ""
 "<@{}> Vous venez de recevoir un avertissement de la part de **{}** dans `{}"
 "`.\n"
 "Vous cumulez désormais **{:,}** avertissements dans ce serveur."
+
+#: cogs/commands/warn.py:70
+msgid ""
+"<@{}> **{}** has received more than **{:,}** warns *({:,})*, do you want to "
+"**kick** this user from this server ?\n"
+"*(Type `{}yes` or `{}no` to proceed)*"
+msgstr ""
+"<@{}> **{}** a reçu plus de **{:,}** avertissements *({:,})*, voulez-vous "
+"**expulser** cet utilisateur du serveur ?\n"
+"*(Tapez `{}yes` ou `{}no` à la suite pour continuer)*"
+
+#: cogs/commands/warn.py:74
+msgid ""
+"<@{}> **{}** has received more than **{:,}** warns *({:,})*, do you want to "
+"**ban** this user from this server ?\n"
+"*(Type `{}yes` or `{}no` to proceed)*"
+msgstr ""
+"<@{}> **{}** a reçu plus de **{:,}** avertissements *({:,})*, voulez-vous "
+"**bannir** cet utilisateur du serveur ?\n"
+"*(Tapez `{}yes` ou `{}no` à la suite pour continuer)*"
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:44
+msgid "<@{}> *[KICK]* Aborting."
+msgstr "<@{}> *[KICK]* Abandon."
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:59
+msgid "<@{}> Kicking **{}**."
+msgstr "<@{}> J'expulse **{}**."
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:70
+msgid "<@{}> I'm not able to kick this user."
+msgstr "<@{}> Je ne peux pas expulser cet utilisateur."
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:74
+msgid "<@{}> *[KICK]* Cancellation."
+msgstr "<@{}> *[KICK]* Annulation."
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:105
+msgid "<@{}> *[BAN]* Aborting."
+msgstr "<@{}> *[BAN]* Abandon."
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:127
+msgid "<@{}> Banning **{}**."
+msgstr "<@{}> Je bannis **{}**."
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:139
+msgid "<@{}> I'm not able to ban this user."
+msgstr "<@{}> Je ne peux pas bannir cet utilisateur."
+
+#: cogs/utils/functions/auto_mod/wf_decision.py:143
+msgid "<@{}> *[BAN]* Cancellation."
+msgstr "<@{}> *[BAN]* Abandon."
