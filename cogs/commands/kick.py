@@ -27,6 +27,11 @@ class Kick(Cog):
         _ = await Translator(self.client, ctx)
         caller, server = ctx.message.author, ctx.message.guild
 
+        # The caller can't kick himself
+
+        if(caller == target):
+            return
+
         await ctx.send(_('<@{}> You\'re about to **kick {}**, are you sure that you want to kick this user ?\n*(Type `{}yes` or `{}no` to proceed)*').format(caller.id, target.name, PREFIX[0], PREFIX[0]))
         if(reason == None):
             await Wait_for_kick(self.client, ctx, server, caller, target)

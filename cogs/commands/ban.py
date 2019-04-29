@@ -27,6 +27,11 @@ class Ban(Cog):
         _ = await Translator(self.client, ctx)
         caller, server = ctx.message.author, ctx.message.guild
 
+        # The caller can't ban himself 
+
+        if(caller == target):
+            return
+            
         # Now if the user has specified a ban limit we check if it's full digits
         # if it's not, it means that is a perma ban with a reason
 
@@ -40,7 +45,7 @@ class Ban(Cog):
         
         if(ban_until == None):
             # If there is no ban_until it means its a perma ban
-            
+
             await ctx.send(_('<@{}> You\'re about to **perma-ban {}**, are you sure about that ?\n*(Type `{}yes` or `{}no` to proceed)*').format(caller.id, target.name, PREFIX[0], PREFIX[0]))
             if(reason == None):
                 await Wait_for_ban(self.client, ctx, server, caller, target)

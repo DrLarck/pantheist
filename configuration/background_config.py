@@ -1,7 +1,7 @@
 '''
 You can manage the diffent background tasks from here
 
-Last update: 27/04/19
+Last update: 29/04/19
 '''
 # Timer
 # All these timers are in second and allow you to decide
@@ -10,3 +10,4 @@ Last update: 27/04/19
 
 PRESENCE_UPDATER_TIMER = 1800
 UNBANNER_TIMER = 60
+UNMUTTER_TIMER = 60

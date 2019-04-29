@@ -1,7 +1,7 @@
 '''
 Manages the unbanner feature.
 
-Last update: 27/04/19
+Last update: 29/04/19
 '''
 # Dependancies
 import discord, asyncio, time

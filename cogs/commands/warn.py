@@ -34,7 +34,12 @@ class Warn(Cog):
         server = ctx.message.guild
         await Insert_init_pilory(self.client, user, server)
         user_warns = await User_warn_amount(self.client, user, server)
+        
+        # The caller can't warn himself
 
+        if(caller == user):
+            return
+            
         # Now we've the amount of the user's warns we can update it
 
         user_warns += 1

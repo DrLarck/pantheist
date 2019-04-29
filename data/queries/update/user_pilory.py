@@ -72,3 +72,24 @@ async def Update_user_perma_ban(client, user_object, server_object, perma_ban):
     
     finally:
         await client.db.release(conn)
+
+async def Update_mute_until(client, user_object, server_object, mute_until):
+    '''
+    Update the date of the user's mute limit
+
+    Return: void
+    '''
+    # Init
+    conn = await client.db.acquire()
+    query = 'UPDATE user_pilory SET user_mute_until= $1 WHERE user_id= $2 AND in_server= $3'
+
+    try:
+        await conn.execute(query, mute_until, user_object.id, server_object.id)
+    
+    except Exception as error:
+        error_time = time.strftime('%d/%m/%y - %H:%M')
+        print('{} - data.queries.update.user_pilory.Update_mute_until : Try#1 : {}'.format(error_time, error))
+        pass
+    
+    finally:
+        await client.db.release(conn)

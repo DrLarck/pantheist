@@ -73,7 +73,7 @@ async def Is_perma_ban(client, user_object, server_object):
 
     except Exception as error:
         error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
-        print('{} - Error in data.queries.select.user_pilory.Is_perma_ba, : Try#1 : {}'.format(error_time, error))
+        print('{} - Error in data.queries.select.user_pilory.Is_perma_ban : Try#1 : {}'.format(error_time, error))
         pass
     
     finally:
@@ -87,3 +87,28 @@ async def Is_perma_ban(client, user_object, server_object):
     
     else:
         return(False)
+
+async def User_mute_until(client, user_object, server_object):
+    '''
+    Returns the user_mute_until value in user_pilory table
+
+    Return: int
+    '''
+    # Init
+    mute_until = 0
+    conn = await client.db.acquire()
+    query = 'SELECT user_mute_until FROM user_pilory WHERE user_id= $1 AND in_server= $2'
+
+    try:
+        mute_until = await conn.fetchval(query, user_object.id, server_object.id)
+        mute_until = int(mute_until)
+    
+    except Exception as error:
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
+        print('{} - Error in data.queries.select.user_pilory.User_mute_until : Try#1 : {}'.format(error_time, error))
+        pass
+    
+    finally:
+        await client.db.release(conn)
+    
+    return(mute_until)
