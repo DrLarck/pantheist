@@ -1,7 +1,7 @@
 '''
 Manages the help command.
 
-Last update: 29/04/19
+Last update: 30/04/19
 '''
 # Dependancies
 import discord, asyncio, time
@@ -10,6 +10,7 @@ from discord.ext.commands import Cog
 
 from cogs.utils.translation.translation import Translator
 from cogs.utils.functions.readability.embed import Basic_Embed
+from cogs.utils.functions.check.direct_message import is_dm
 from configuration.global_config import PREFIX
 
 class Help(Cog):
@@ -17,6 +18,7 @@ class Help(Cog):
         self.client = client
     
     @commands.command()
+    @commands.check(is_dm)
     async def help(self, ctx):
         '''
         Displays the help message
@@ -31,7 +33,7 @@ class Help(Cog):
         ban_n = _('ban [@user] {time: seconds} {"reason"}')
         mute_n = _('mute [@user] [duration seconds] {"reason"}')
         kick_n = _('kick [@user] {reason}')
-        warn_n = _('warn | w [@user]')
+        warn_n = _('warn | w [@user] {"reason"}')
 
         # Commands description
         ban_desc = _('[Perm : ban members] - Allows you to ban a member from the server.\nIf it\'s a **temp-ban**, please pass the time as **seconds**.\nAlso pass the **reason** between "quotation marks".')

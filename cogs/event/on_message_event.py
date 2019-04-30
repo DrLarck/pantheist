@@ -8,6 +8,7 @@ import discord, asyncio, time
 from discord.ext import commands
 from discord.ext.commands import Cog
 
+from cogs.utils.functions.check.direct_message import is_dm
 from data.queries.insert.user_info import Insert_user_info, Insert_init_pilory
 
 class On_Message(Cog):
@@ -15,6 +16,7 @@ class On_Message(Cog):
         self.client = client
     
     @Cog.listener()
+    @commands.check(is_dm)
     async def on_message(self, message):
         '''
         Do something when the client sees a message

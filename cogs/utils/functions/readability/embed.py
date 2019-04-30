@@ -6,9 +6,10 @@ Last update: 28/04/19
 # Dependancies
 import discord
 
-from configuration.global_config import THEME_COLOR, V_MAJ,V_MED,V_MIN,V_PHASE
+from configuration.global_config import V_MAJ,V_MED,V_MIN,V_PHASE
+from configuration.graphic_config import THEME_COLOR
 
-def Basic_Embed(client, title=None, thumb=None, footer=None):
+def Basic_Embed(client, title=None, thumb=None, footer=None, color=None):
     '''
     Generates a pre-configured embed.
 
@@ -17,12 +18,16 @@ def Basic_Embed(client, title=None, thumb=None, footer=None):
     # Init
     bot_avatar = client.user.avatar_url
     basic_footer = '{} v{}.{}.{} - {} | © 2019 - DrLarck\'s - MIT License'.format(client.user.name, V_MAJ, V_MED, V_MIN, V_PHASE)
+    embed_color = THEME_COLOR
+
+    if(color != None):
+        embed_color = color
 
     if(title != None):
-        basic_embed = discord.Embed(title=title, colour=THEME_COLOR)
+        basic_embed = discord.Embed(title=title, colour=embed_color)
     
     else:
-        basic_embed = discord.Embed(colour=THEME_COLOR)
+        basic_embed = discord.Embed(colour=embed_color)
     
     if(thumb != None):
         basic_embed.set_thumbnail(url=thumb)

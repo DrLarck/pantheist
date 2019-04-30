@@ -10,6 +10,8 @@ from configuration.global_config import PREFIX
 from configuration.auto_mod_config import BAN_LIMIT
 from cogs.utils.translation.translation import Translator
 
+from cogs.utils.functions.auto_mod.logs_ import Pantheist_mod_logger
+
 from data.queries.select.user_pilory import User_warn_amount
 from data.queries.update.user_pilory import Update_ban_until
 
@@ -60,10 +62,12 @@ async def Wait_for_kick(client, ctx, server, caller, target, reason=None):
 
                 if(reason == None):
                     await server.kick(target, reason='[KICK] Kicked after {} warns by {}.'.format(user_warns, caller))
+                    await Pantheist_mod_logger(client, caller, target, server, 'kick')
                     return
                 
                 else:
                     await server.kick(target, reason=reason)
+                    await Pantheist_mod_logger(client, caller, target, server, 'kick', reason=reason)
                     return
             
             except discord.errors.Forbidden:
@@ -128,11 +132,13 @@ async def Wait_for_ban(client, ctx, server, caller, target, reason=None, ban_unt
                 if(reason == None):
                     await server.ban(target, reason='[BAN] Banned after {} warns by {}.'.format(user_warns, caller))
                     await Update_ban_until(client, target, server, ban_time)
+                    await Pantheist_mod_logger(client, caller, target, server, 'ban', duration=ban_until)
                     return
 
                 else:
                     await server.ban(target, reason=reason)
                     await Update_ban_until(client, target, server, ban_time)
+                    await Pantheist_mod_logger(client, caller, target, server, 'ban', duration=ban_until, reason=reason)
                     return
             
             except discord.errors.Forbidden:

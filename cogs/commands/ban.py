@@ -1,7 +1,7 @@
 '''
 Manages the ban feature.
 
-Last update: 28/04/19
+Last update: 30/04/19
 '''
 # Dependancies
 import discord, asyncio, time
@@ -11,12 +11,15 @@ from discord.ext.commands import Cog
 from configuration.global_config import PREFIX
 from cogs.utils.translation.translation import Translator
 from cogs.utils.functions.auto_mod.wf_decision import Wait_for_ban
+from cogs.utils.functions.auto_mod.logs_ import Pantheist_mod_logger
+from cogs.utils.functions.check.direct_message import is_dm
 
 class Ban(Cog):
     def __init__(self, client):
         self.client = client
     
     @commands.command()
+    @commands.check(is_dm)
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, target: discord.Member, ban_until=None, *, reason=None):
         '''
@@ -62,5 +65,23 @@ class Ban(Cog):
             else:
                 await Wait_for_ban(self.client, ctx, server, caller, target, reason=reason, ban_until=ban_until)
 
+    '''
+    Errors handler
+    '''
+    @ban.error 
+    async def ban_error(self, ctx, error):
+        '''
+        Ban command error handler
+        '''
+        # Init
+        _ = await Translator(self.client, ctx)
+        caller = ctx.message.author
+
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(_('<@{}> Error : a required argument is missing.').format(caller.id))
+        
+        if isinstance(error, commands.BadArgument):
+            await ctx.send(_('<@{}> Error : I can\'t find this user.').format(caller.id))
+                
 def setup(client):
     client.add_cog(Ban(client))

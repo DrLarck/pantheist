@@ -1,7 +1,7 @@
 '''
 Manages the kick command behaviour
 
-Last update: 28/04/19
+Last update: 30/04/19
 '''
 # Dependancies
 import discord, asyncio, time
@@ -12,12 +12,15 @@ from configuration.global_config import PREFIX
 from cogs.utils.translation.translation import Translator
 
 from cogs.utils.functions.auto_mod.wf_decision import Wait_for_kick
+from cogs.utils.functions.auto_mod.logs_ import Pantheist_mod_logger
+from cogs.utils.functions.check.direct_message import is_dm
 
 class Kick(Cog):
     def __init__(self, client):
         self.client = client
     
     @commands.command()
+    @commands.check(is_dm)
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, target: discord.Member, *, reason=None):
         '''
@@ -38,6 +41,24 @@ class Kick(Cog):
         
         else:
             await Wait_for_kick(self.client, ctx, server, caller, target, reason)
+
+    '''
+    Errors handler
+    '''
+    @kick.error 
+    async def kick_error(self, ctx, error):
+        '''
+        Kick command error handler
+        '''
+        # Init
+        _ = await Translator(self.client, ctx)
+        caller = ctx.message.author
+
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(_('<@{}> Error : a required argument is missing.').format(caller.id))
+        
+        if isinstance(error, commands.BadArgument):
+            await ctx.send(_('<@{}> Error : I can\'t find this user.').format(caller.id))
 
 def setup(client):
     client.add_cog(Kick(client))

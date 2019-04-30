@@ -1,7 +1,7 @@
 '''
 Manages the warn command
 
-Last update: 28/04/19
+Last update: 30/04/19
 '''
 # Dependancies
 import discord, asyncio, time
@@ -12,6 +12,8 @@ from configuration.auto_mod_config import AUTO_MOD, KICK_WARNS_AMOUNT, BAN_WARNS
 from configuration.global_config import PREFIX
 from cogs.utils.translation.translation import Translator
 from cogs.utils.functions.auto_mod.wf_decision import Wait_for_kick, Wait_for_ban
+from cogs.utils.functions.auto_mod.logs_ import Pantheist_mod_logger
+from cogs.utils.functions.check.direct_message import is_dm
 
 from data.queries.select.user_pilory import User_warn_amount
 from data.queries.update.user_pilory import Update_user_warns
@@ -22,8 +24,9 @@ class Warn(Cog):
         self.client = client
     
     @commands.command(aliases=['w'])
+    @commands.check(is_dm)
     @commands.has_permissions(kick_members=True, ban_members=True)
-    async def warn(self, ctx, user: discord.Member, *, reason= None):
+    async def warn(self, ctx, user: discord.Member, *, reason=None):
         '''
         Allows a member that has the right permission to warn a member
         After a certain amount of warns, the member is kicked from the server
@@ -34,6 +37,7 @@ class Warn(Cog):
         server = ctx.message.guild
         await Insert_init_pilory(self.client, user, server)
         user_warns = await User_warn_amount(self.client, user, server)
+        await Pantheist_mod_logger(self.client, caller, user, server, 'warn', reason=reason)
         
         # The caller can't warn himself
 
@@ -78,6 +82,23 @@ class Warn(Cog):
             if(user_warns >= BAN_WARNS_AMOUNT):
                 await ctx.send(_('<@{}> **{}** has received more than **{:,}** warns *({:,})*, do you want to **ban** this user from this server ?\n*(Type `{}yes` or `{}no` to proceed)*').format(caller.id, user.name, BAN_WARNS_AMOUNT, user_warns, PREFIX[0], PREFIX[0]))
                 await asyncio.wait_for(Wait_for_ban(self.client, ctx, server, caller, user), timeout=135)
+    '''
+    Error handler
+    '''
+    @warn.error 
+    async def warn_error(self, ctx, error):
+        '''
+        Warn command error handler
+        '''
+        # Init
+        _ = await Translator(self.client, ctx)
+        caller = ctx.message.author
+
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(_('<@{}> Error : a required argument is missing.').format(caller.id))
+        
+        if isinstance(error, commands.BadArgument):
+            await ctx.send(_('<@{}> Error : I can\'t find this user.').format(caller.id))
 
 def setup(client):
     client.add_cog(Warn(client))
