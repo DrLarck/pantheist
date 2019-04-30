@@ -31,7 +31,7 @@ async def Unmutter(client):
                 pantheist_mute_role = get(server.roles, name=MUTE_ROLE)
             
             except Exception as error:
-                error_time = time.strftime('%d/%m/%y - %H:%M')
+                error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
                 print('{} - Error in cogs.utils.tasks.unmutter.Unmutter : Try#1 : {}'.format(error_time, error))
                 pass
 

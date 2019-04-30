@@ -19,7 +19,7 @@ async def Translator(client, ctx):
     if(type(caller_lang) == str):
         caller_lang = caller_lang.upper()
     else:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - Error in cogs.utils.translation.translation.Translator : The \'caller_lang\' type is uncorrect'.format(error_time))
         return
 

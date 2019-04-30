@@ -46,7 +46,7 @@ async def Wait_for_kick(client, ctx, server, caller, target, reason=None):
         await ctx.send(_('<@{}> *[KICK]* Aborting.').format(caller.id), delete_after=5)
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - Error in cogs.utils.functions.auto_mod.wf_decision.Wait_for_kick : Try#1 : {}'.format(error_time, error))
         pass
     
@@ -109,7 +109,7 @@ async def Wait_for_ban(client, ctx, server, caller, target, reason=None, ban_unt
         await ctx.send(_('<@{}> *[BAN]* Aborting.').format(caller.id), delete_after=5)
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - Error in cogs.utils.functions.auto_mod.wf_decision.Wait_for_ban : Try#1 : {}'.format(error_time, error))
         pass
     

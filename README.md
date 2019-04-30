@@ -1,5 +1,5 @@
 ### What is pantheist ?
-**Pantheist** is a free and open-source moderation Discord Bot.
+**Pantheist** is a free and open-source Discord moderation Bot.
 It has been first developped for the **Discord Ball Z** community.
 The project has started on **23/04/2019** at 10 PM (GMT +1) in France.
 

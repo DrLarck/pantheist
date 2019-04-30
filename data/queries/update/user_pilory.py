@@ -20,7 +20,7 @@ async def Update_user_warns(client, user_object, new_amount):
         await conn.execute(query, new_amount, user_object.id)
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - data.queries.update.user_pilory.Update_user_warns : Try#1 : {}'.format(error_time, error))
         pass
     
@@ -42,7 +42,7 @@ async def Update_ban_until(client, user_object, server_object, ban_until):
         await conn.execute(query, ban_until, user_object.id, server_object.id)
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - data.queries.update.user_pilory.Update_ban_until : Try#1 : {}'.format(error_time, error))
         pass
     
@@ -66,7 +66,7 @@ async def Update_user_perma_ban(client, user_object, server_object, perma_ban):
         await conn.execute(query, perma_ban, user_object.id, server_object.id)
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - data.queries.update.user_pilory.Update_user_warns : Try#1 : {}'.format(error_time, error))
         pass
     
@@ -87,7 +87,7 @@ async def Update_mute_until(client, user_object, server_object, mute_until):
         await conn.execute(query, mute_until, user_object.id, server_object.id)
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - data.queries.update.user_pilory.Update_mute_until : Try#1 : {}'.format(error_time, error))
         pass
     

@@ -23,7 +23,7 @@ async def Insert_user_info(client, user_object, date):
         pass
         
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - Error in insert.user_info.Insert_user_info : Try#1 : {}'.format(error_time, error))
         pass
     
@@ -46,7 +46,7 @@ async def Insert_init_pilory(client, user_object, server):
         pass
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - Error in data.queries.insert.user_info.Insert_init_pilory : Try#1 : {}'.format(error_time, error))
         pass
     

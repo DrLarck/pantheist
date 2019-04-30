@@ -22,7 +22,7 @@ async def User_language(client, user_object):
         user_lang = str(user_lang)
     
     except Exception as error:
-        error_time = time.strftime('%d/%m/%y - %H:%M')
+        error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
         print('{} - Error in data.queries.select.user_info.User_language : Try#1 : {}'.format(error_time, error))
         pass
     

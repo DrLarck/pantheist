@@ -9,9 +9,9 @@ PREFIX = ['**']
 
 COGS = ['cogs.event.on_ready_event', 'cogs.event.on_message_event', 'cogs.commands.warn',
         'cogs.commands.kick', 'cogs.commands.help', 'cogs.commands.ban',
-        'cogs.commands.mute', 'cogs.event.on_error_event']
+        'cogs.commands.mute', 'cogs.event.on_error_event', 'cogs.commands.language']
 
-V_MAJ, V_MED, V_MIN, V_PHASE = 0,1,41,'ALPHA' 
+V_MAJ, V_MED, V_MIN, V_PHASE = 0,1,56,'ALPHA' 
 
 # Customization
         # Roles

@@ -42,7 +42,7 @@ async def Pantheist_mod_logger(client, caller_object, target_object, server_obje
             await logs_channel.send(embed=ban_log)
         
         except Exception as error:
-            error_time = time.strftime('%d/%m/%y - %H:%M')
+            error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
             print('{} - Error in cogs.utils.functions.auto_mode.logs_ : Try @BAN : {}'.format(error_time, error))
             pass
 
@@ -64,7 +64,7 @@ async def Pantheist_mod_logger(client, caller_object, target_object, server_obje
             await logs_channel.send(embed=kick_log)
         
         except Exception as error:
-            error_time = time.strftime('%d/%m/%y - %H:%M')
+            error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
             print('{} - Error in cogs.utils.functions.auto_mode.logs_ : Try @KICK : {}'.format(error_time, error))
             pass
     
@@ -86,7 +86,7 @@ async def Pantheist_mod_logger(client, caller_object, target_object, server_obje
             await logs_channel.send(embed=mute_log)
         
         except Exception as error:
-            error_time = time.strftime('%d/%m/%y - %H:%M')
+            error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
             print('{} - Error in cogs.utils.functions.auto_mode.logs_ : Try @MUTE : {}'.format(error_time, error))
             pass
     
@@ -107,7 +107,7 @@ async def Pantheist_mod_logger(client, caller_object, target_object, server_obje
             await logs_channel.send(embed=unmute_log)
         
         except Exception as error:
-            error_time = time.strftime('%d/%m/%y - %H:%M')
+            error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
             print('{} - Error in cogs.utils.functions.auto_mode.logs_ : Try @UNMUTE : {}'.format(error_time, error))
             pass
     
@@ -129,6 +129,6 @@ async def Pantheist_mod_logger(client, caller_object, target_object, server_obje
             await logs_channel.send(embed=warn_log)
         
         except Exception as error:
-            error_time = time.strftime('%d/%m/%y - %H:%M')
+            error_time = time.strftime('%d/%m/%y - %H:%M', time.gmtime())
             print('{} - Error in cogs.utils.functions.auto_mode.logs_ : Try @UNMUTE : {}'.format(error_time, error))
             pass
