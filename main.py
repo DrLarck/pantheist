@@ -1,7 +1,7 @@
 '''
 This is the main file. You can run the bot by executing this script.
 
-Last update: 24/04/19
+Last update: 06/05/19
 '''
 # Dependancies 
 import discord, asyncio, time, logging
@@ -13,7 +13,6 @@ from cogs.utils.tasks.background_runner import Background_Task_Runner
 
 # Client configuration
 logging.basicConfig(level=logging.INFO)
-client = discord.Client()
 client = commands.Bot(command_prefix=PREFIX)
 client.remove_command('help')  # We delete the basic help command to create our own
 
