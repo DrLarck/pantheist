@@ -14,10 +14,10 @@ class Version():
 
     - Attribute
 
-    `version` (`str`)
+    `number` (`str`)
 
     `phase` (`str`)
     """
 
-    version = "2.0.0"
+    number = "2.0.0"
     phase = "BETA"

@@ -5,7 +5,7 @@ Config class
 
 Author : DrLarck
 
-Last update : 27/02/20 (DrLarck)
+Last update : 28/02/20 (DrLarck)
 """
 
 # dependancies

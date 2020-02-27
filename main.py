@@ -5,7 +5,7 @@ Main class
 
 Author : DrLarck
 
-Last update : 27/02/20 (DrLarck)
+Last update : 28/02/20 (DrLarck)
 """
 
 # dependancies
@@ -14,6 +14,9 @@ import asyncio
 import os
 
 from discord.ext.commands import Bot
+
+# config
+from configuration.config import Config
 
 class Main():
     """
@@ -39,9 +42,10 @@ class Main():
         # init
         client = None
         activity = None
+        config = Config()
 
         # defining the activity
-        activity = discord.Game("**help | v2 - BETA")
+        activity = discord.Game(f"**help | v{config.version.number} - {config.version.phase}")
 
         # defining the client
         client = Bot(self.prefix, activity = activity, help_command = None)
