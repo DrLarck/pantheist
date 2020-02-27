@@ -39,9 +39,15 @@ class Database():
 
     - Method
 
+    # connection
+
     :coro:`init()` : `None` - Get the connection pool and set the connection
 
     :coro:`close()` : `None` - Close the connection to the database
+
+    # query management
+
+    :coro:`execute(query)` [`str`] : `None` - Execute the query
     """
     
     # config
@@ -97,4 +103,54 @@ class Database():
         # close the connection
         await self.pool.close()
 
+        return
+    
+    async def execute(self, query, parameter = None):
+        """
+        `coroutine`
+
+        Execute an SQL command
+
+        - Parameter : 
+
+        `query` (`str`) : The PostgreSQL query
+
+        [optional]`parameter` (`list`) : List containing sequences arguments
+
+        - Example :
+
+        ```python
+        await database.execute("INSERT INTO table(col) VALUES ($1, $2, $3)", ["a", "b", "c"])
+        ```
+
+        --
+
+        Return : `None`
+        """
+
+        # init
+        if(parameter == None):
+            parameter = []
+        
+        await self.init()
+
+        # execute the query and pass the arguments stored in 
+        # parameter to it
+        try:
+            await self.connection.execute(
+                query, *parameter
+            )
+        
+        # ignore the unique constraint violation error
+        except asyncpg.UniqueViolationError:
+            pass
+        
+        # error handling
+        except Exception as error:
+            print(f"##########\n(DATABASE : EXECUTE) - Error while executing the query : '{query}' \nError : {error}\n##########")
+
+        # gracefully close the connection
+        finally:
+            await self.close()
+            
         return
