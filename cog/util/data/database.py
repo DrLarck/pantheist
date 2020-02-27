@@ -47,7 +47,9 @@ class Database():
 
     # query management
 
-    :coro:`execute(query)` [`str`] : `None` - Execute the query
+    :coro:`execute(query, parameter)` [`str`, `list`] : `None` - Execute the query
+
+    :coro:`fetchval(query)` [`str`] : `None` - Fetch a value from the database
     """
     
     # config
@@ -152,5 +154,37 @@ class Database():
         # gracefully close the connection
         finally:
             await self.close()
-            
+
         return
+    
+    async def fetchval(self, query):
+        """
+        `coroutine`
+
+        Fetch a value from the databse
+
+        - Parameter 
+
+        `query` (`str`)
+
+        -- 
+
+        Return : Fetched value or `None` if not found
+        """
+
+        # init
+        value = None
+        await self.init()
+
+        # get the value
+        try:
+            value = await self.connection.fetchval(query)
+        
+        # error handling
+        except Exception as error:
+            print(f"##########\n(DATABASE : EXECUTE) - Error while executing the query : '{query}' \nError : {error}\n##########")
+        
+        finally:
+            await self.close()
+
+        return(value)
