@@ -40,6 +40,8 @@ class Database():
     - Method
 
     :coro:`init()` : `None` - Get the connection pool and set the connection
+
+    :coro:`close()` : `None` - Close the connection to the database
     """
     
     # config
@@ -75,5 +77,24 @@ class Database():
         # if the pool creation has worked
         if(self.pool != None):
             self.connection = await self.pool.acquire()
+
+        return
+    
+    async def close(self):
+        """
+        `coroutine`
+
+        Close the connection to the database
+
+        --
+
+        Return : `None`
+        """
+
+        # release the connection
+        await self.pool.release(self.connection)
+
+        # close the connection
+        await self.pool.close()
 
         return
