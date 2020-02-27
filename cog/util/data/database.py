@@ -184,7 +184,41 @@ class Database():
         except Exception as error:
             print(f"##########\n(DATABASE : EXECUTE) - Error while executing the query : '{query}' \nError : {error}\n##########")
         
+        # gracefully close the connection
         finally:
             await self.close()
 
         return(value)
+    
+    async def fetch(self, query):
+        """
+        `coroutine`
+
+        Fetch rows by executing the query
+
+        - Paramater
+
+        `query` (`str`)
+
+        --
+
+        Return : `list` of rows or `None` if not found
+        """
+
+        # init
+        rows = None
+        await self.init()
+
+        # get the rows
+        try:
+            rows = await self.connection.fetch(query)
+        
+        # error handling
+        except Exception as error:
+            print(f"##########\n(DATABASE : EXECUTE) - Error while executing the query : '{query}' \nError : {error}\n##########")
+        
+        # gracefully close the connection
+        finally:
+            await self.close()
+
+        return(rows)
