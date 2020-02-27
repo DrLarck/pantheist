@@ -13,6 +13,8 @@ import discord
 import asyncio
 import os
 
+from discord.ext.commands import Bot
+
 class Main():
     """
     Run the bot and manages the bot configuration
@@ -23,7 +25,7 @@ class Main():
     """
 
     prefix = ["**"]
-    token = os.environ["pantheist-token"]
+    token = os.environ["pantheist_token"]
 
     def start(self):
         """
@@ -42,7 +44,7 @@ class Main():
         activity = discord.Game("**help | v2 - BETA")
 
         # defining the client
-        client = discord.ext.commands.Bot(self.prefix, activity = activity, help_command = None)
+        client = Bot(self.prefix, activity = activity, help_command = None)
 
         # run the bot
         client.run(self.token)
@@ -50,5 +52,5 @@ class Main():
         return
 
 # run the Main class
-if(__name__ is "__main__"):
+if(__name__ == "__main__"):
     Main().start()
